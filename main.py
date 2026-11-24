@@ -34,6 +34,8 @@ def validate(line):
         raise ValueError("excuse line must be a single line")
     if any(ord(ch) < 0x20 or ord(ch) == 0x7F for ch in line):
         raise ValueError("excuse line contains control characters")
+    if "  " in line:
+        raise ValueError("excuse line must not contain double spaces")
     if not any(ch.isalpha() for ch in line):
         raise ValueError("excuse line must contain at least one letter")
     if len(line) > MAX_CHARS:
